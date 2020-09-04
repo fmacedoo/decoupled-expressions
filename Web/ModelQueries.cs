@@ -4,7 +4,7 @@ namespace Web
     using System.Collections.Generic;
     using System.Linq.Expressions;
 
-    public static class ModelConditions
+    public static class ModelQueries
     {
         public static Expression<Func<Model, bool>> ByNameContainsAwesome() =>
             x => x.Name.Contains("awesome");

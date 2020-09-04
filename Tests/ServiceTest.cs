@@ -41,7 +41,7 @@ namespace Tests
                 .Returns(models);
 
             var awesomeModels = models
-                .Where(ModelConditions.ByNameContainsAwesome().Compile());
+                .Where(ModelQueries.ByNameContainsAwesome().Compile());
 
             Assert.AreEqual(2, awesomeModels.Count());
         }
@@ -67,7 +67,7 @@ namespace Tests
                 .Returns(models);
 
             var awesomeModels = models
-                .Where(ModelConditions.ByNameNotContainsAwesome().Compile());
+                .Where(ModelQueries.ByNameNotContainsAwesome().Compile());
 
             Assert.AreEqual(3, awesomeModels.Count());
         }
@@ -80,7 +80,7 @@ namespace Tests
             this.Get<IRepository>().Verify(o => 
                 o.GetAllBy(
                     It.Is<Expression<Func<Model, bool>>>(condition => 
-                        Lambda.Eq(condition, ModelConditions.ByNameContainsAwesome())
+                        Lambda.Eq(condition, ModelQueries.ByNameContainsAwesome())
                     )
                 ),
                 Moq.Times.Once());
